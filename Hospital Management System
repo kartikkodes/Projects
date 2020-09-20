@@ -1,0 +1,120 @@
+#include<stdio.h>
+#include<windows.h>
+#include<conio.h>
+#include<ctype.h>
+#include<string.h>
+#include<stdlib.h>
+char ans=0;      //}->
+int ok;           //}-> Gloal Variables
+int b, valid=0;   //}->
+//Function Declaration
+void welcomescreen(void);
+void menu(void);
+void login(void);
+void addreco(void);
+void funclist(void);
+void search(void);
+void edit(void);
+void delreco(void);
+void exit(void);
+void gotoxy(short x,short y);
+{
+	COORD pos ={x,y};
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),pos);
+}
+
+struct patient
+{
+	int age;
+	char gender;
+	char name[20];
+	char contact[13];
+	char address[30];
+	char email[20];
+	char doc[20];
+	char disease[20];
+};
+struct patient p,temp_c;
+main()
+{
+	welcomescreen();
+	login();
+}
+void welcomescreen()
+{
+	printf("\n\n\n\n\n\n\t\t\t\t\t\t~~~~~~~~~~~~~~~~~~~~"); 
+	printf("\n\t\t\t\t\t\tWelcome to Mittal Hospital");
+	printf("\n\t\t\t\t\t\t~~~~~~~~~~~~~~~~~~~~");
+	printf("\nPRESS ANY KEY!!");
+	getch();
+	clrscr();
+}
+void login()
+{
+	int e=1;
+	char username[15];
+	char password[8];
+	char original_username[25]="ankit";
+	char original_password[10]="1511";
+	do{
+		printf("Enter username and password\n");
+		printf("Username please!\n");
+		scanf("%s",&username);
+		printf("Password please!\n");
+		scanf("%s",&password);
+		if(strcmp(username,original_username)==0  &&  strcmp(password,original_password)==0)
+		{
+			printf("Login Succesfull\n");
+			getch();
+			menu();
+			break;
+		}
+		else
+		{
+			printf("Incorrect credentials!! Try Again!\n");
+			e++;
+			getch();
+		}
+	}while(e<=3);
+	if(e>3)
+	{
+		printf("Crossed attempts limit.Fuck Off!\n");
+		getch();
+		exit();
+	}
+	clrscr();
+}
+void menu()
+{
+	int choose;
+	printf("1.Add patient record\n2.List Patient Record\n3.Search Patient Record\n4.Edit Patient Record\n5.Delete Pateint Record\n6.exit\n);
+	scanf("%d",&choose);
+	switch(choose)
+	{
+		case 1:
+			addreco();
+			break;
+		case 2:
+		 	funclist();
+			 break;
+		case 3:
+			search();
+			break;
+		case 4:
+			edit();
+			break;
+		case 5:
+			delreco();
+			break;
+		case 6:
+			exit();
+			break;
+		default:
+			printf("Wrong Entry! Please enter right option\n");
+			getch();					 	
+	}
+}
+void addreco()
+{
+	clrscr();
+}
